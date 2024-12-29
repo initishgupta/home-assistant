@@ -111,13 +111,19 @@ config: |
   protocol websockets
 
 ## Additional volumes.
-extraVolumes: []
+extraVolumes:
+  - name: mosquitto-password-file
+    configMap:
+      name: mosquitto-passwordfile
   # - name: tls
   #   secret:
   #     secretName: mosquitto-certs
 
 ## Additional volumeMounts to the main container.
-extraVolumeMounts: []
+extraVolumeMounts:
+  - name: mosquitto-password-file
+    mountPath: /etc/mosquitto/passwordfile
+    subPath: passwordfile
   # - name: tls
   #   mountPath: /certs
   #   subPath: cafile
